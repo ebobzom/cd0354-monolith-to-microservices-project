@@ -20,7 +20,7 @@ jobs:
     - name: Push to Dockerhub
       run: docker push ${{ secrets.DOCKER_USER_NAME }}/reverseproxy:v1
 
-    - name: Build feed image
+    - name: Build feed image and push to Dockerhub
       run: docker build --file ./udagram-api-feed/Dockerfile --tag ${{ secrets.DOCKER_USER_NAME }}/udagram-api-feed
     - name: Push to Dockerhub
       run: docker push ${{ secrets.DOCKER_USER_NAME }}/udagram-api-feed:v1
