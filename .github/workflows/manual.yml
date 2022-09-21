@@ -22,7 +22,7 @@ jobs:
     - uses: actions/checkout@v2
       run: docker push ${{ secrets.DOCKER_USER_NAME }}/reverseproxy:v1
 
-    - name: Build feed image and push to Dockerhub
+    - name: Build feed image and push to docker
     - uses: actions/checkout@v2
       run: docker build --file ./udagram-api-feed/Dockerfile --tag ${{ secrets.DOCKER_USER_NAME }}/udagram-api-feed
     - name: Push to Dockerhub
@@ -32,7 +32,6 @@ jobs:
     - name: Build user image
     - uses: actions/checkout@v2
       run: docker build --file ./udagram-api-user/Dockerfile --tag ${{ secrets.DOCKER_USER_NAME }}/udagram-api-user
-
     - name: Push to Dockerhub
     - uses: actions/checkout@v2
       run: docker push ${{ secrets.DOCKER_USER_NAME }}/udagram-api-user:v1
