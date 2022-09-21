@@ -13,33 +13,26 @@ jobs:
       env:
         DOCKER_USER_NAME: ${{ secrets.DOCKER_USER_NAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        run: docker login -u $DOCKER_USER_NAME -p $DOCKER_PASSWORD
+        run: |
+        docker login -u $DOCKER_USER_NAME -p $DOCKER_PASSWORD
 
     - name: Build reversproxy image
-    - uses: actions/checkout@v2
       run: docker build --file ./udagram-reverseproxy/Dockerfile --tag ${{ secrets.DOCKER_USER_NAME }}/reverseproxy
     - name: Push to Dockerhub
-    - uses: actions/checkout@v2
       run: docker push ${{ secrets.DOCKER_USER_NAME }}/reverseproxy:v1
 
     - name: Build feed image and push to docker
-    - uses: actions/checkout@v2
       run: docker build --file ./udagram-api-feed/Dockerfile --tag ${{ secrets.DOCKER_USER_NAME }}/udagram-api-feed
     - name: Push to Dockerhub
-    - uses: actions/checkout@v2
       run: docker push ${{ secrets.DOCKER_USER_NAME }}/udagram-api-feed:v1
 
     - name: Build user image
-    - uses: actions/checkout@v2
       run: docker build --file ./udagram-api-user/Dockerfile --tag ${{ secrets.DOCKER_USER_NAME }}/udagram-api-user
     - name: Push to Dockerhub
-    - uses: actions/checkout@v2
       run: docker push ${{ secrets.DOCKER_USER_NAME }}/udagram-api-user:v1
 
     - name: Build frontend image
-    - uses: actions/checkout@v2
       run: docker build --file ./udagram-frontend/Dockerfile --tag ${{ secrets.DOCKER_USER_NAME }}/udagram-frontend
     - name: Push to Dockerhub
-    - uses: actions/checkout@v2
       run: docker push ${{ secrets.DOCKER_USER_NAME }}/udagram-frontend:v1
 
